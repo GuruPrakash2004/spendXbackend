@@ -28,7 +28,6 @@ import com.example.expencetracker.model.Expense;
  */
 @Slf4j
 @Component
-@RequiredArgsConstructor
 public class ExpenseEventListener {
  
     private final ElasticsearchService elasticsearchService;

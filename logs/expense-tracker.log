@@ -3099,3 +3099,11 @@ VALUES (?, ?, ?, ?, ?, ?, ?)
 2026-04-01T12:00:51.449+05:30  INFO 38428 --- [expensetracker] [org.springframework.jms.JmsListenerEndpointContainer#0-1] c.e.e.service.ExpenseEventListener       : MQ event received [CREATED] expenseId=10
 2026-04-01T12:00:51.449+05:30 DEBUG 38428 --- [expensetracker] [http-nio-8080-exec-7] o.s.jdbc.support.JdbcTransactionManager  : Committing JDBC transaction on Connection [HikariProxyConnection@420744845 wrapping com.mysql.cj.jdbc.ConnectionImpl@157810cb]
 2026-04-01T12:00:51.459+05:30 DEBUG 38428 --- [expensetracker] [http-nio-8080-exec-7] o.s.jdbc.support.JdbcTransactionManager  : Releasing JDBC Connection [HikariProxyConnection@420744845 wrapping com.mysql.cj.jdbc.ConnectionImpl@157810cb] after transaction
+2026-04-01T12:01:00.843+05:30  INFO 38428 --- [expensetracker] [http-nio-8080-exec-8] c.e.e.controller.ExpenseController       : Fetching expenses. category=null
+2026-04-01T12:01:00.844+05:30 DEBUG 38428 --- [expensetracker] [http-nio-8080-exec-8] o.s.jdbc.core.JdbcTemplate               : Executing prepared SQL query
+2026-04-01T12:01:00.844+05:30 DEBUG 38428 --- [expensetracker] [http-nio-8080-exec-8] o.s.jdbc.core.JdbcTemplate               : Executing prepared SQL statement [SELECT * FROM expenses ORDER BY date DESC]
+2026-04-01T12:01:00.844+05:30 DEBUG 38428 --- [expensetracker] [http-nio-8080-exec-8] o.s.jdbc.datasource.DataSourceUtils      : Fetching JDBC Connection from DataSource
+2026-04-01T12:01:41.808+05:30  INFO 38428 --- [expensetracker] [http-nio-8080-exec-9] c.e.e.controller.ExpenseController       : Fetching expenses. category=null
+2026-04-01T12:01:41.809+05:30 DEBUG 38428 --- [expensetracker] [http-nio-8080-exec-9] o.s.jdbc.core.JdbcTemplate               : Executing prepared SQL query
+2026-04-01T12:01:41.809+05:30 DEBUG 38428 --- [expensetracker] [http-nio-8080-exec-9] o.s.jdbc.core.JdbcTemplate               : Executing prepared SQL statement [SELECT * FROM expenses ORDER BY date DESC]
+2026-04-01T12:01:41.809+05:30 DEBUG 38428 --- [expensetracker] [http-nio-8080-exec-9] o.s.jdbc.datasource.DataSourceUtils      : Fetching JDBC Connection from DataSource

@@ -1,7 +1,7 @@
 package com.example.expencetracker.controller;
 
 
-import lombok.RequiredArgsConstructor;
+
 import lombok.extern.slf4j.Slf4j;
 
 import org.slf4j.Logger;
@@ -27,7 +27,6 @@ import java.util.stream.Collectors;
 @Slf4j
 @RestController
 @RequestMapping("/api/search")
-@RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:5173")
 public class SearchController {
  
