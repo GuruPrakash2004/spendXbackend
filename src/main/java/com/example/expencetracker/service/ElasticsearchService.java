@@ -34,9 +34,7 @@ import java.util.stream.Collectors;
 *   Write to DB → publish to MQ → MQ listener calls this service → ES updated.
 *   Read (search) → this service → ES → results returned to client.
 */
-@Slf4j
 @Service
-@RequiredArgsConstructor
 public class ElasticsearchService {
 
    private final ElasticsearchClient esClient;
