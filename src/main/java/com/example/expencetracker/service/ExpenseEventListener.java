@@ -26,7 +26,7 @@ import com.example.expencetracker.model.Expense;
  * Each listener method is invoked on a separate thread managed by the JMS container,
  * so heavy ES operations never block the HTTP request threads.
  */
-@Slf4j
+
 @Component
 public class ExpenseEventListener {
  

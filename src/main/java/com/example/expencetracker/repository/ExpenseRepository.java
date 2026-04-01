@@ -32,7 +32,7 @@ import java.util.Optional;
 * No JPA / Hibernate here — JDBC gives us full control over our SQL
 * and avoids the N+1 / lazy-loading surprises that come with ORM.
 */
-@Slf4j
+
 @Repository
 public class ExpenseRepository {
 

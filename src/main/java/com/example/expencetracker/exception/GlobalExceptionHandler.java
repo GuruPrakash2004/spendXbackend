@@ -1,7 +1,6 @@
 package com.example.expencetracker.exception;
 
 
-import lombok.extern.slf4j.Slf4j;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +28,7 @@ import java.util.Map;
 * a consistent JSON shape that the frontend can reliably parse.
 */
 
-@Slf4j
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 	

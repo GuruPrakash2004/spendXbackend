@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
  *   - It may evolve independently (pagination, facets, scoring tweaks).
  *   - Single Responsibility: ExpenseController owns CRUD, this owns search.
  */
-@Slf4j
+
 @RestController
 @RequestMapping("/api/search")
 @CrossOrigin(origins = "http://localhost:5173")
