@@ -1,0 +1,90 @@
+server:
+  port: 8080
+
+# ─────────────────────────────────────────────────────────
+# Application identity
+# ─────────────────────────────────────────────────────────
+spring:
+  application:
+    name: expensetracker          # Identifies this service in logs and monitoring
+
+  # ─────────────────────────────────────────────────────────
+  # Database — MySQL
+  # Changed from PostgreSQL: driver, URL format, and credentials
+  # updated to point at the on-prem MySQL instance.
+  # ─────────────────────────────────────────────────────────
+  datasource:
+    url: jdbc:mysql://192.168.16.191:5873/user_INT002
+    username: rw_onprem_user_INT002
+    password: P8SU_4IY1_Z7LL_BSLG_T5MW
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    # HikariCP — Spring Boot's default connection pool
+    hikari:
+      pool-name: ExpenseTrackerPool
+      maximum-pool-size: 10          # Max concurrent DB connections
+      minimum-idle: 2                # Keep at least 2 connections ready
+      connection-timeout: 30000      # Wait up to 30s before throwing error
+      idle-timeout: 600000           # Close idle connections after 10 min
+
+  # ─────────────────────────────────────────────────────────
+  # ActiveMQ Artemis — async messaging broker
+  # ─────────────────────────────────────────────────────────
+  artemis:
+    mode: native                     # 'native' = connect to external broker
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin12
+
+  # ─────────────────────────────────────────────────────────
+  # Jackson — global JSON serialization rules
+  # ─────────────────────────────────────────────────────────
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false   # Use ISO-8601 strings, not epoch numbers
+    default-property-inclusion: non_null # Skip null fields in JSON responses
+
+# ─────────────────────────────────────────────────────────
+# Elasticsearch
+# Using HTTPS with basic auth credentials.
+# ssl.verification-mode: none disables cert validation —
+# acceptable for internal/dev environments, enable in production.
+# ─────────────────────────────────────────────────────────
+elasticsearch:
+  uris: https://localhost:9200
+  username: elastic
+  password: 9i-SvVCmxKdI6kz0GjlG
+  ssl:
+    verification-mode: none
+  index:
+    expense: expenses
+
+# ─────────────────────────────────────────────────────────
+# JWT — token signing & expiry
+# ─────────────────────────────────────────────────────────
+jwt:
+  secret: expense-tracker-super-secret-key-change-in-production
+  expiration: 86400000               # 24 hours in milliseconds
+
+# ─────────────────────────────────────────────────────────
+# ActiveMQ queue names — centralised here so nothing is
+# hardcoded in Java. Inject via @Value where needed.
+# ─────────────────────────────────────────────────────────
+app:
+  queue:
+    expense-created: expense.created.queue
+    expense-updated: expense.updated.queue
+    expense-deleted: expense.deleted.queue
+
+# ─────────────────────────────────────────────────────────
+# Logging
+# ─────────────────────────────────────────────────────────
+logging:
+  level:
+    root: INFO
+    com.expensetracker: DEBUG        # Verbose logging for our own packages only
+    org.springframework.jdbc: DEBUG  # Log every SQL statement for dev visibility
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/expense-tracker.log   # Rolling log file location
